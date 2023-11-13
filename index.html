@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento Online</title>
+    
+    <style>
+        body {
+            background-color: #000; /* Cor preta */
+            color: #ffffff; /* Cor do texto */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Alterado para 'align-items' para centralizar verticalmente */
+            margin: 0;
+        }
+    
+        #countdown {
+            text-align: center;
+            font-size: 20px;
+            color: orangered;
+            font-family: 'Arial Black', sans-serif;
+        }
+    
+        /* Estilos gerais para o formulário */
+        form {
+            background-color: #000000e7;
+            color: #ffffff;
+            width: 400px;
+            height: auto; 
+            border: none;
+            border-radius: 5px;
+            margin-top: 30px;
+            font-size: 15px;
+            font-family: 'Arial Black', Arial, sans-serif;
+            word-wrap: break-word;
+            white-space: normal; /* Esta propriedade pode ser usada para ajustar o comportamento de quebra de linha */
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        form:hover {
+            background-color: rgb(15, 15, 15);
+            
+        } 
+    
+        h1 {
+            font-family: 'Arial Black', Arial, sans-serif;
+            font-size: 25px;
+            max-width: 400px; /* Defina a largura máxima desejada */
+            color: rgb(252, 168, 0);
+            text-align: center;            
+            margin-top: 30px; /* Centraliza o h1 */
+        }
+        p {
+            font-family: 'Arial Black', Arial, sans-serif;
+            font-size: 18px;
+            max-width: 400px; /* Defina a largura máxima desejada */
+            color: rgb(250, 13, 5);
+            text-align: center;        
+            margin: 0 auto; /* Centraliza o h1 */
+        }
+        #copiry {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 12px;
+            max-width: 400px; /* Defina a largura máxima desejada */
+            color: rgb(253, 253, 253);
+            text-align: center;        
+            margin-top: 50px ; /* Centraliza o h1 */
+        }
+        legend {
+            font-family: 'Arial Black', Arial, sans-serif;
+            font-size: 14px;
+            max-width: 350px; /* Defina a largura máxima desejada */
+            color: rgb(0, 0, 0);
+            text-align: center;        
+            margin: 0 auto; /* Centraliza o h1 */
+        }
+
+
+
+    
+        /* Estilo para rótulos dos campos */
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    
+        /* Estilo para campos de entrada de texto e área de texto */
+        .input-padrao {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+    
+        /* Estilo para o botão de envio */
+        .enviar {
+            background-color: #52d108e7;
+            color: #000000;
+            width: 400px;
+            height: auto; 
+            border: none;
+            border-radius: 20px;
+            font-size: 20px;
+            font-family: 'Arial Black', Arial, sans-serif;
+            word-wrap: break-word;
+            white-space: normal; /* Esta propriedade pode ser usada para ajustar o comportamento de quebra de linha */
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .enviar:hover {
+            background-color: rgb(146, 255, 73);
+        }
+
+        /* Estilo para o checkbox */
+        .checkbox {
+            display: block;
+            margin: 10px 0;
+            font-weight: normal;
+        }
+
+        /* Estilo para o campo de seleção */
+        footer {
+            background-color: #ffffffe7;
+            color: #000000;
+            width: 400px;
+            height: auto; 
+            border: none;
+            border-radius: 20px;
+            font-size: 15px;
+            font-family: 'Arial Black', Arial, sans-serif;
+            word-wrap: break-word;
+            white-space: normal; /* Esta propriedade pode ser usada para ajustar o comportamento de quebra de linha */
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        footer:hover {
+            background-color: rgb(189, 238, 247);
+            
+        }
+        
+        select {
+            background-color: #ff0000e7;
+            color: #000000;
+            width: 350px;
+            height: auto; 
+            border: none;
+            border-radius: 15px;
+            font-size: 15px;
+            font-family: 'Arial Black', Arial, sans-serif;
+            word-wrap: break-word;
+            white-space: normal; /* Esta propriedade pode ser usada para ajustar o comportamento de quebra de linha */
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        select:hover {
+            background-color: rgb(90, 207, 0);
+            
+        }
+
+        /* Estilo para os radio buttons */
+        input[type="radio"] {
+            margin-right: 10px;
+            text-align: center;
+
+        }
+
+        /* Estilos para o rodapé */
+        footer {
+            text-align: center;
+        }
+
+        /* Estilos para imagens */
+        .imagem-container {
+            text-align: center; margin-bottom: 20px;
+        }
+
+        .imagem-container img {
+            width: 400px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+
+        /* Estilos para o contêiner de vídeo */
+        .video-container {
+            text-align: center;
+        }
+
+        .video-container video {
+            width: 400px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+            /* Outros estilos específicos, se necessário */
+    </style>
+    
+</head>
+<body>
+    <main>
+        <h1>Conheça o novo Empreendimento Residencial Condomínio Club na Vila das Belezas - SP</h1>
+        <!-- Inclusão das imagens -->
+        <div class="imagem-container">
+            <img src="01.jpg" alt="Imagem 1">
+            <p>Viva o melhor da vida em nosso condomínio Club! Seu novo lar é um convite ao bem-estar! 🌳🏋️‍♂️🎉</p>
+            <img src="02.jpg" alt="Imagem 2">
+            <p>Sua família merece o melhor! No nosso condomínio Club, cada detalhe foi pensado para proporcionar conforto e diversão. Descubra um novo estilo de vida! 🏡🤸‍♂️🎈</p>
+            <img src="03.jpg" alt="Imagem 6">
+            <p>Localização privilegiada! Nosso condomínio Club </p>
+            <img src="04.jpg" alt="Imagem 8">
+            <p>Seu novo lar é completo, assim como você merece! Além disso possui plantas inteligentes:</p>            
+            <img src="05.png" alt="Imagem 9">
+            
+        </div>
+        <h1>Viva próximo de tudo que você precisa, desde supermercados e hospitais até shoppings e estações de metrô. Viva com comodidade e praticidade. Conheça seu futuro lar agora! 🏠🏬🚇🐾💼🚚!</h1>    
+        <div class="video-container">
+            <video width="640" controls autoplay preload="auto" loop>
+                <source src="video01.mp4" type="video/mp4">
+            </video>
+            <h1> Agora você pode solicitar direto no campo de mensagens uma simulação de financiamento, de entrada e de parcelas!</h1>
+            <video width="640" autoplay preload="auto" muted loop>
+                <source src="video02.mp4" type="video/mp4">
+            </video>
+            <h1> Solicite abaixo o ebook de apresentação completo e a tabela de preços dos apartamentos:</h1>
+        </div>
+        <form
+            action="https://formspree.io/f/xgejbwnz"
+            method="POST"
+            >
+>
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="name" class="input-padrao" autocomplete="name" required placeholder="insira seu nome aqui">
+        
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" class="input-padrao" autocomplete="email" required placeholder="insira seu email aqui">
+        
+            <label for="contato">Contato WhatsApp:</label>
+            <input type="tel" id="contato" name="contato" class="input-padrao" autocomplete="cc-number" required placeholder="(xx) xxxxx-xxxx">
+        
+            <label for="mensagem">Se você procura alguma informação específica, aproveite o campo abaixo para enviar sua mensagem:</label>
+            <textarea cols="20" rows="5" id="mensagem" name="mensagem" class="input-padrao"></textarea>
+            <footer>
+                <legend>Gostaria de receber nosso contato para um atendimento personalizado?</legend>
+                <select id="visita" name="visita">
+                    <option value="nao">Não</option>
+                    <option value="sim">Sim</option>
+                </select><!-- Campos de seleção de data e horário (inicialmente ocultos) -->
+                <div id="data-horario-fields" style="display: none;">
+                    <label for="data">Selecione a data:</label>
+                    <input type="date" id="data" name="data">
+
+                    <label for="horario">Selecione o horário:</label>
+                    <input type="time" id="horario" name="horario">
+                </div>
+            </footer>                       
+            
+            <input type="submit" value="RECEBER EBOOK, SIMULAÇÃO E INFORMAÇÕES. AQUI!" class="enviar" style="margin-top: 10px;">
+        </form>
+        
+        <div id="copiry">
+            <img src="logo.png" alt="Logo." width="100">
+            <br id="copiry" copyright">&copy; Copyright DEIVISON - 2023</br>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
