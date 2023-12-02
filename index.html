@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agendamento Online</title>
-    
-    <style>
-        body {
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roleta de Prêmios</title>
+  <style>
+    /* Adicione seu estilo CSS aqui */
+    body {
             background-color: #ffffff; /* Cor preta */
             color: #000000; /* Cor do texto */
             display: flex;
@@ -15,271 +14,501 @@
             align-items: center; /* Alterado para 'align-items' para centralizar verticalmente */
             margin: 0;
         }
-    
-        #countdown {
-            text-align: center;
-            font-size: 20px;
-            color: red;
-            font-family: 'Arial Black', sans-serif;
-        }
-    
-        /* Estilos gerais para o formulário */
-        form {
-           
-            color: #000000;
-            width: 400px;
-            height: auto; 
-            border: none;
-            border-radius: 5px;
-            margin-top: 30px;
-            font-size: 15px;
-            font-family: 'Arial Black', Arial, sans-serif;
-            word-wrap: break-word;
-            white-space: normal; /* Esta propriedade pode ser usada para ajustar o comportamento de quebra de linha */
-            align-items: center;
-            text-align: center;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        form:hover {
-            background-color: rgb(218, 218, 218)91);
-            
-        } 
-    
-        h1 {
-            font-family: 'Arial Black', Arial, sans-serif;
-            font-size: 25px;
-            max-width: 400px; /* Defina a largura máxima desejada */
-            color: rgb(76, 0, 252);
-            text-align: center;            
-            margin-top: 30px; /* Centraliza o h1 */
-        }
-        p {
-            font-family: 'Arial Black', Arial, sans-serif;
-            font-size: 18px;
-            max-width: 400px; /* Defina a largura máxima desejada */
-            color: rgb(250, 13, 5);
-            text-align: center;        
-            margin: 0 auto; /* Centraliza o h1 */
-        }
-        #copiry {
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 12px;
-            max-width: 400px; /* Defina a largura máxima desejada */
-            color: rgb(0, 0, 0);
-            text-align: center;        
-            margin-top: 50px ; /* Centraliza o h1 */
-        }
-        legend {
-            font-family: 'Arial Black', Arial, sans-serif;
-            font-size: 14px;
-            max-width: 350px; /* Defina a largura máxima desejada */
-            color: rgb(0, 0, 0);
-            text-align: center;        
-            margin: 0 auto; /* Centraliza o h1 */
-        }
 
+    #wheel-container {
+      text-align: center;
+      position: relative;
+      width: 400px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      margin-top: 20px;
+      
+    }
 
+    #wheel {
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background-image: url('0.gif'); /* Imagem central */
+      background-size: cover;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
 
-    
-        /* Estilo para rótulos dos campos */
-        label {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
-            font-size: 16px;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-    
-        /* Estilo para campos de entrada de texto e área de texto */
-        .input-padrao {
-            width: 90%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-    
-        /* Estilo para o botão de envio */
-        .enviar {
-            background-color: #52d108e7;
-            color: #000000;
-            width: 400px;
-            height: auto; 
-            border: none;
-            border-radius: 20px;
-            font-size: 20px;
-            font-family: 'Arial Black', Arial, sans-serif;
-            word-wrap: break-word;
-            white-space: normal; /* Esta propriedade pode ser usada para ajustar o comportamento de quebra de linha */
-            align-items: center;
-            text-align: center;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
+    .prize {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      transform-origin: center 150px; /* Ajuste conforme necessário para a órbita */
+      animation: rotatePrizes 6s linear infinite; /* Duração e tipo de animação */
+    }
 
-        .enviar:hover {
-            background-color: rgb(146, 255, 73);
-        }
+    .prize:nth-child(1) { background-image: url('1.gif'); transform: rotate(0deg); }
+    .prize:nth-child(2) { background-image: url('2.gif'); transform: rotate(51.42857deg); }
+    .prize:nth-child(3) { background-image: url('3.gif'); transform: rotate(102.85714deg); }
+    .prize:nth-child(4) { background-image: url('4.gif'); transform: rotate(154.28571deg); }
+    .prize:nth-child(5) { background-image: url('5.gif'); transform: rotate(205.71429deg); }
+    .prize:nth-child(6) { background-image: url('6.gif'); transform: rotate(257.14286deg); }
+    .prize:nth-child(7) { background-image: url('7.gif'); transform: rotate(308.57143deg); }
 
-        /* Estilo para o checkbox */
-        .checkbox {
-            display: block;
-            margin: 10px 0;
-            font-weight: normal;
-        }
+    @keyframes rotatePrizes {
+      0% { transform: rotate(0deg); }
+      3% { transform: rotate(-360deg); }
+    }
 
-        /* Estilo para o campo de seleção */
-        footer {
-            background-color: #ffffffe7;
-            color: #000000;
-            width: 400px;
-            height: auto; 
-            border: none;
-            border-radius: 20px;
-            font-size: 15px;
-            font-family: 'Arial Black', Arial, sans-serif;
-            word-wrap: break-word;
-            white-space: normal; /* Esta propriedade pode ser usada para ajustar o comportamento de quebra de linha */
-            align-items: center;
-            text-align: center;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        footer:hover {
-            background-color: rgb(189, 238, 247);
-            
-        }
+    #spin-btn {
+        background-color: #52d108e7;
+        color: #000000;
+        width: 400px;
+        height: auto; 
+        border: none;
+        border-radius: 20px;
+        font-size: 40px;
+        font-family: 'Arial Black', Arial, sans-serif;
+        word-wrap: break-word;
+        white-space: normal; /* Esta propriedade pode ser usada para ajustar o comportamento de quebra de linha */
+        align-items: center;
+        text-align: center;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    #spin-btn:hover {
+        background-color: rgb(104, 253, 4);
+    }
         
-        select {
-            background-color: #ff0000e7;
-            color: #000000;
-            width: 350px;
-            height: auto; 
-            border: none;
-            border-radius: 15px;
-            font-size: 16px;
-            font-family: 'Arial Black', Arial, sans-serif;
-            word-wrap: break-word;
-            white-space: normal; /* Esta propriedade pode ser usada para ajustar o comportamento de quebra de linha */
-            align-items: center;
-            text-align: center;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        select:hover {
-            background-color: rgb(90, 207, 0);
-            
-        }
 
-        /* Estilo para os radio buttons */
-        input[type="radio"] {
-            margin-right: 10px;
-            text-align: center;
+    .prize-container {
+      position: relative;
+      margin-top: 20px;
 
-        }
+    }
 
-        /* Estilos para o rodapé */
-        footer {
-            text-align: center;
-        }
+    .prize-image {
+      max-width: 400px;
+      max-height: 400px;
+      display: none;
+      margin-bottom: 10px;
+    }
 
-        /* Estilos para imagens */
-        .imagem-container {
-            text-align: center; margin-bottom: 20px;
-        }
+    .prize-text {
+      font-size: 18px;
+    }
 
-        .imagem-container img {
-            width: 400px;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-            margin-top: 20px;
-        }
+    .code-number {
+      font-weight: bold;
+    }
 
-        /* Estilos para o contêiner de vídeo */
-        .video-container {
-            text-align: center;
-        }
+    #terms-link {
+      margin-top: 10px;
+      font-size: 18px;
+      text-decoration: underline;
+      color: blue;
+      cursor: pointer;
+    }
 
-        .video-container video {
-            width: 400px;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-        }
-            /* Outros estilos específicos, se necessário */
-    </style>
+    #terms-modal {
+      display: none;
+      
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    #terms-content {
+      background-color: #fff;
+      padding: 20px;
+      max-width: 400px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    #close-modal {
+      background-color: #fc5d5d;
+      padding: 18px;
+      max-width: 400px;
+      margin: 30Px;
+      border-radius: 15px;
+      text-align: center;
+      top: 30px;
+      cursor: pointer;
+      font-size: 20px;
+      color: rgb(0, 0, 0);
+      font-family: 'Arial Black', sans-serif;
+    }
+
+        
+    #countdown {
+        text-align: center;
+        font-size: 30px;
+        color: rgb(255, 255, 255);
+        font-family: 'Arial Black', sans-serif;
+    }
+
+    /* Estilos gerais para o formulário */
+    form {
+       
+        color: #000000;
+        width: 400px;
+        height: auto; 
+        border: none;
+        border-radius: 15px;
+        margin-top: 30px;
+        font-size: 15px;
+        font-family: 'Arial Black', Arial, sans-serif;
+        word-wrap: break-word;
+        white-space: normal; /* Esta propriedade pode ser usada para ajustar o comportamento de quebra de linha */
+        align-items: center;
+        text-align: center;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    form:hover {
+        background-color: rgb(255, 255, 255);
+        
+    } 
+
+    h1 {
+        font-family: 'Arial Black', Arial, sans-serif;
+        font-size: 18px;
+        max-width: 400px; /* Defina a largura máxima desejada */
+        color: rgb(0, 0, 0);
+        text-align: center;            
+        margin-top: 30px; /* Centraliza o h1 */
+    }
+
+    .br {
+        font-family: 'Arial Black', Arial, sans-serif;
+        font-size: 18px;
+        max-width: 400px; /* Defina a largura máxima desejada */
+        color: rgb(0, 0, 0);
+        text-align: center;            
+        margin-top: 30px; /* Centraliza o h1 */
+    }
+    #titulo-termo {
+        font-family: 'Arial Black', Arial, sans-serif;
+        font-size: 18px;
+        max-width: 400px; /* Defina a largura máxima desejada */
+        color: rgb(0, 0, 0);
+        text-align: center;            
+        margin-top: 30px; /* Centraliza o h2 */
+
+    }
+
+    #termo {
+        font-family: 'Arial', Arial, sans-serif;
+        font-size: 10px;
+        max-width: 400px; 
+        color: rgb(0, 0, 0);
+        text-align: center;            
+        margin-top: 20px;
+    }
+    p {
+        font-family: 'Arial Black', Arial, sans-serif;
+        font-size: 18px;
+        max-width: 400px; /* Defina a largura máxima desejada */
+        color: rgb(250, 13, 5);
+        text-align: center;        
+        margin: 0 auto; /* Centraliza o h1 */
+    }
+    #copiry {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 12px;
+        max-width: 400px; /* Defina a largura máxima desejada */
+        color: rgb(0, 0, 0);
+        text-align: center;        
+        margin-top: 50px ; /* Centraliza o h1 */
+    }
+    legend {
+        font-family: 'Arial Black', Arial, sans-serif;
+        font-size: 14px;
+        max-width: 350px; /* Defina a largura máxima desejada */
+        color: rgb(0, 0, 0);
+        text-align: center;        
+        margin: 0 auto; /* Centraliza o h1 */
+    }
+
+    /* Estilo para rótulos dos campos */
+    label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+        font-size: 16px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    /* Estilo para campos de entrada de texto e área de texto */
+    .input-padrao {
+        width: 90%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    /* Estilo para o botão de envio */
+    .enviar {
+        background-color: #47b806e7;
+        color: #000000;
+        width: 400px;
+        height: 80px; 
+        border: none;
+        border-radius: 20px;
+        font-size: 25px;
+        font-family: 'Arial Black', Arial, sans-serif;
+        word-wrap: break-word;
+        white-space: normal; /* Esta propriedade pode ser usada para ajustar o comportamento de quebra de linha */
+        align-items: center;
+        text-align: center;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    .enviar:hover {
+        background-color: rgb(146, 255, 73);
+    }
+    /* Estilo para o checkbox */
+    .checkbox {
+        display: block;
+        margin: 10px 0;
+        font-weight: normal;
+    }
+    /* Estilo para o campo de seleção */
+    footer {
+        background-color: #ffffffe7;
+        color: #000000;
+        width: 400px;
+        height: auto; 
+        border: none;
+        border-radius: 20px;
+        font-size: 15px;
+        font-family: 'Arial Black', Arial, sans-serif;
+        word-wrap: break-word;
+        white-space: normal; /* Esta propriedade pode ser usada para ajustar o comportamento de quebra de linha */
+        align-items: center;
+        text-align: center;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    footer:hover {
+        background-color: rgb(255, 255, 255);
+        
+    }
     
+    select {
+        background-color: #ff0000e7;
+        color: #000000;
+        width: 400px;
+        height: 40px; 
+        border: none;
+        border-radius: 25px;
+        font-size: 25px;
+        font-family: 'Arial Black', Arial, sans-serif;
+        word-wrap: break-word;
+        white-space: normal; /* Esta propriedade pode ser usada para ajustar o comportamento de quebra de linha */
+        align-items: center;
+        text-align: center;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    select:hover {
+        background-color: rgb(90, 207, 0);
+        
+    }
+    /* Estilo para os radio buttons */
+    input[type="radio"] {
+        margin-right: 10px;
+        text-align: center;
+    }
+    /* Estilos para o rodapé */
+    footer {
+        text-align: center;
+    }
+    /* Estilos para imagens */
+    .imagem-container {
+        text-align: center; margin-bottom: 20px;
+    }
+    .imagem-container img {
+        width: 400px;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+        margin-top: 20px;
+    }
+    /* Estilos para o contêiner de vídeo */
+    .video-container {
+        text-align: center;
+    }
+    .video-container video {
+        width: 400px;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+  </style>
 </head>
 <body>
-    <main>
-        <h1>PROMOÇÃO DA SEMANA, MORE NA VILA DAS BELEZAS, APÊ A PARTIR DE R$212.000,00 COM ENTRADA PARCELADA EM ATÉ 60 VEZES!</h1>
-        <!-- Inclusão das imagens -->
-        <div class="imagem-container">
-            <img src="01.jpg" alt="Imagem 1">
-            <p>Viva o melhor da vida em seu condomínio Club! Seu novo lar é um convite ao bem-estar! 🌳🏋️‍♂️🎉</p>
-            <img src="02.jpg" alt="Imagem 2">
-            <p>Sua família merece o melhor! Cada detalhe foi pensado para seu conforto e diversão. 🏡🤸‍♂️🎈</p>
-            <img src="03.jpg" alt="Imagem 6">
-            <p>A localização é privilegiada!</p>
-            <img src="04.jpg" alt="Imagem 8">
-            <p>Seu novo lar é completo, assim como você merece! Além disso possui plantas inteligentes:</p>            
-            <img src="05.jpg" alt="Imagem 9">
-            
-        </div>
-        <h1>Viva próximo de tudo que você precisa, supermercados, hospitais, shoppings, estações de metrô e muito mais! 🏠🏬🚇🐾💼🚚!</h1>    
-        <div class="video-container">
-            <video width="640" controls autoplay preload="auto" loop>
-                <source src="video01.mp4" type="video/mp4">
-            </video>
-            <h1> Tire suas dúvidas online, mande uma mensagem no formularioa abaixo, nosso time de especialista vai te mostrar o melhor caminho!</h1>
-            <video width="640" autoplay preload="auto" muted loop>
-                <source src="video02.mp4" type="video/mp4">
-            </video>
-            <h1>Solicite agora o book e a tabela de preços.</h1>
-            <h1>Olha que novidade incrivel 😍</h1> 
-            <h1>Agora você pode ter uma consultoria personalizada e 100% de forma online e sem compromisso!</h1>
-            <h1>Que legal isso 🤩, solicite agora aqui embaixo 👇😌:</h1>
-        </div>
-        <form
-            action="https://formspree.io/f/xgejbwnz"
-            method="POST">
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="name" class="input-padrao" autocomplete="name" required placeholder="insira seu nome aqui">
-        
-            <label for="email">E-mail:</label>
-            <input type="email" id="email" name="email" class="input-padrao" autocomplete="email" required placeholder="insira seu email aqui">
-        
-            <label for="contato">Contato WhatsApp:</label>
-            <input type="tel" id="contato" name="contato" class="input-padrao" autocomplete="cc-number" required placeholder="(xx) xxxxx-xxxx">
-        
-            <label for="mensagem">Se você procura alguma informação específica, aproveite o campo abaixo para enviar sua mensagem:</label>
-            <textarea cols="20" rows="5" id="mensagem" name="mensagem" class="input-padrao"></textarea>
-            <footer>
-                <legend>Gostaria de receber nosso contato para um atendimento personalizado?</legend>
-                <select id="visita" name="visita">
-                    <option value="nao">Não</option>
-                    <option value="sim">Sim</option>
-                </select><!-- Campos de seleção de data e horário (inicialmente ocultos) -->
-                <div id="data-horario-fields" style="display: none;">
-                    <label for="data">Selecione a data:</label>
-                    <input type="date" id="data" name="data">
+<main>
+<h1>Promoção da Semana, Comprou Ganhou Um Pix do Sorteio!</h1>
+<!-- Inclusão das imagens -->
+<div class="imagem-container">
+    <img src="01.jpg" alt="Imagem 1">
+    <p>Gire a roleta e viva o melhor da vida em seu condomínio Club! Seu novo lar é um convite ao bem-estar! 🌳🏋️‍♂️🎉</p>
+    <img src="11.gif" alt="imagem gif 11">
+    <p>Encontre o botão da roleta mais embaixo</p>
+    <img src="02.jpg" alt="Imagem 2">
+    <p>Sua família merece o melhor! Cada detalhe foi pensado para seu conforto e diversão. 🏡🤸‍♂️🎈</p>
+    <img src="03.jpg" alt="Imagem 3">
+    <p>Gire a roleta agora, porque aquie a sua localização será privilegiada!</p>
+    <img src="04.jpg" alt="Imagem 4">
+    <p>Seu novo lar é completo, assim como você merece! Além disso possui plantas inteligentes:</p>            
+    <img src="05.jpg" alt="Imagem 5">
+</div>
+<h1>Viva próximo de tudo que você precisa, supermercados, hospitais, shoppings, estações de metrô e muito mais! 🏠🏬🚇🐾💼🚚!</h1>   
+<div class="video-container">
+    <video width="640" controls autoplay preload="auto" loop>
+        <source src="video01.mp4" type="video/mp4">
+    </video>
+    <h1> Tire suas dúvidas online, mande uma mensagem no formularioa abaixo, nosso time de especialista vai te mostrar o melhor caminho!</h1>
+    <video width="640" autoplay preload="auto" muted loop>
+        <source src="video02.mp4" type="video/mp4">
+    </video>
+    <h1>ENVIAR</h1>
+    <h1>Olha que novidade incrivel 😍</h1> 
+    <h1>Agora você pode ter uma consultoria personalizada e 100% de forma online e sem compromisso!</h1>
+    <h1>Que legal isso 🤩, solicite agora aqui embaixo 👇😌:</h1>
+</div>
+<div id="wheel-container">
+    <div id="wheel">
+      <div class="prize"></div>
+      <div class="prize"></div>
+      <div class="prize"></div>
+      <div class="prize"></div>
+      <div class="prize"></div>
+      <div class="prize"></div>
+      <div class="prize"></div>
+      <div class="prize"></div>
+    </div>
+    <div class="prize-container">
+      <img src="" alt="Prêmio" class="prize-image" id="prize-image">
+      <div class="prize-text" id="prize-text"></div>
+    </div>
+    <button id="spin-btn" onclick="spinWheel()">Gire a Roleta Aqui!</button>
+    <div id="terms-link" onclick="showTerms()">Termos e Condições do Sorteio "Oportunidade de Sonho"</div>
+  </div>
+  <div id="terms-modal">
+    <div id="terms-content">
+      <div id="close-modal" onclick="closeTermsModal()">Fechar</div>
+      <h2 id="titulo-termo">Termos e Condições do Sorteio "Oportunidade de Sonho"</h2>
+      <p id="termo">
+        <strong>1. Elegibilidade:</strong>
+        <br>
+        1.1 Para participar do sorteio "Oportunidade de Sonho", os participantes devem ser maiores de 18 anos e residentes no Brasil.
+        <br>
+        1.2 O valor será pago mediante a compra exclusivamente intermediada pela Imobiliária DEIVISON NEGÓCIOS IMOBILIÁRIOS.
+        <br>
+        1.3 O pagamento acontecerá 7 dias úteis após a assinatura do contrato do Imóvel com a Incorporadora.
+        <br><br>
 
-                    <label for="horario">Selecione o horário:</label>
-                    <input type="time" id="horario" name="horario">
-                </div>
-            </footer>                       
-            
-            <input type="submit" value="RECEBER EBOOK, SIMULAÇÃO E INFORMAÇÕES. AQUI!" class="enviar" style="margin-top: 10px;">
-        </form>
-        
-        <div id="copiry">
-            <img src="logo.png" alt="Logo." width="100">
-            <br id="copiry" copyright">&copy; Copyright DEIVISON - 2023</br>
+        <strong>2. Período de Participação:</strong>
+        <br>
+        2.1 O período para participar encerrará em 7 dias úteis após ser encaminhado o código premiado.
+        <br>
+        2.2 Todas as entradas devem ser recebidas antes do término do período de participação para serem consideradas válidas.
+        <br><br>
+
+        <strong>3. Como Participar:</strong>
+        <br>
+        3.1 Os participantes devem preencher o formulário de interesse disponível abaixo e inserir o código premiado.
+        <br>
+        3.2 A participação só será confirmada após a efetivação da compra do imóvel exclusivamente com a Imobiliária DEIVISON NEGÓCIOS IMOBILIÁRIOS LTDA.
+        <br>
+        3.3 Após o preenchimento do Formulário com o Código Premiado, a Imobiliária DEIVISON NEGÓCIOS IMOBILIÁRIOS LTDA entrará em contato para sanar todas as dúvidas.
+        <br><br>
+
+        <strong>4. Prêmios:</strong>
+        <br>
+        4.1 Os prêmios serão valores em reais pagos via Pix, conforme descrito nas imagens da página.
+        <br>
+        4.2 Os prêmios são intransferíveis.
+        <br>
+        4.3 Os participantes serão elegíveis para os prêmios somente após a efetivação da compra do imóvel exclusivamente com a Imobiliária DEIVISON NEGÓCIOS IMOBILIÁRIOS LTDA.
+        <br><br>
+
+        <strong>5. Transparência e Responsabilidade:</strong>
+        <br>
+        5.1 A Imobiliária DEIVISON NEGÓCIOS IMOBILIÁRIOS LTDA é organizadora exclusiva do sorteio e com ela se reserva o direito de modificar ou cancelar o sorteio a qualquer momento por motivos justificados.
+        <br>
+        5.2 A decisão da Incorporadora em relação aos vencedores é final.
+        <br><br>
+
+        <strong>6. Disposições Gerais:</strong>
+        <br>
+        6.1 Este sorteio não é patrocinado, endossado ou administrado pelo Facebook, Instagram ou qualquer outra plataforma de mídia social.
+        <br>
+        6.2 Os participantes concordam em isentar as construtoras e Incorporadoras de qualquer responsabilidade relacionada a esse sorteio.
+        <br>
+        6.3 A Imobiliária DEIVISON N I LTDA não será responsável pelo pagamento do prêmio se o sorteado adquirir um imóvel por meio de outra imobiliária.
+        <br>
+        6.4 Nenhuma construtora ou incorporadora será obrigada a efetuar o pagamento do prêmio, mesmo que seu empreendimento esteja sendo divulgado nas páginas de anúncio da entidade responsável.
+        <br>
+        6.5 A única entidade responsável pelo prêmio é a Imobiliária DEIVISON N I LTDA.
+        <br>
+        6.6 O sorteio é completamente gratuito, portanto, todos os participantes devem compreender que não há, em nenhuma circunstância, a obrigação de reembolso por parte da Imobiliária.
+        <br>
+        6.7 Cada participante terá direito a apenas um prêmio, mesmo que tenha participado mais de uma vez do sorteio.
+        <br>
+        6.8 O prêmio aceito será aquele validado no formulário, juntamente com o código premiado.
+    </p>
+    </div>
+  </div>
+<form
+    action="https://formspree.io/f/xgejbwnz"
+    method="POST">
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" name="name" class="input-padrao" autocomplete="name" required placeholder="insira seu nome aqui">
+
+    <label for="code-number">Número Soteado:</label>
+    <input type="code-number" id="codigoPremiado" name="codigoPremiado" class="input-padrao" autocomplete="name" required placeholder="insira seu codigo sorteado aqui">
+
+    <label for="email">E-mail:</label>
+    <input type="email" id="email" name="email" class="input-padrao" autocomplete="email" required placeholder="insira seu email aqui">
+
+    <label for="contato">Contato WhatsApp:</label>
+    <input type="tel" id="contato" name="contato" class="input-padrao" autocomplete="cc-number" required placeholder="(xx) xxxxx-xxxx">
+
+    <label for="mensagem">Se você procura alguma informação específica, aproveite o campo abaixo para enviar sua mensagem:</label>
+    <textarea cols="20" rows="5" id="mensagem" name="mensagem" class="input-padrao"></textarea>
+    <footer>
+        <legend>Gostaria de receber nosso contato para um atendimento personalizado?</legend>
+        <select id="visita" name="visita">
+            <option value="nao">Não</option>
+            <option value="sim">Sim</option>
+        </select><!-- Campos de seleção de data e horário (inicialmente ocultos) -->
+        <div id="data-horario-fields" style="display: none;">
+            <label for="data">Selecione a data:</label>
+            <input type="date" id="data" name="data">
+
+            <label for="horario">Selecione o horário:</label>
+            <input type="time" id="horario" name="horario">
         </div>
-    </main>
+    </footer>                       
+    
+    <input type="submit" value="CONFIRMAR" class="enviar" style="margin-top: 10px;">
+</form>
+
+<div id="copiry">
+    <img src="logo.png" alt="Logo." width="100">
+    <br id="copiry" copyright">&copy; Copyright DEIVISON - 2023</br>
+</div>
+</main>
     <script src="script.js"></script>
 </body>
 </html>
